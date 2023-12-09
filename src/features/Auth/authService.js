@@ -1,12 +1,12 @@
 import axios from "axios";
 
 let Register = async (formdata) => {
-  let responce = await axios.post("https://render.com/docs/node-version/user/signup", formdata);
+  let responce = await axios.post("http://localhost:500/user/signup", formdata);
   return responce.data;
 };
 
 let Login = async (formdata) => {
-  let responce = await axios.post("https://render.com/docs/node-version/login", formdata);
+  let responce = await axios.post("https://render.com/docs/node-version/user/login", formdata);
   return responce.data;
 };
 
