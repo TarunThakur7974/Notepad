@@ -1,25 +1,25 @@
 import axios from "axios";
 
 let Register = async (formdata) => {
-  let responce = await axios.post("https://github.com/TarunThakur7974/Notepad-Backend/user/signup", formdata);
+  let responce = await axios.post("https://notepad-kjwv.onrender.com/user/signup", formdata);
   return responce.data;
 };
 
 let Login = async (formdata) => {
-  let responce = await axios.post("https://github.com/TarunThakur7974/Notepad-Backend/user/login", formdata);
+  let responce = await axios.post("https://notepad-kjwv.onrender.com/user/login", formdata);
   return responce.data;
 };
 
 let getUserData = async (formdata) => {
   if (formdata) {
-    let responce = await axios.get("https://github.com/TarunThakur7974/Notepad-Backend/notes/" + formdata);
+    let responce = await axios.get("https://notepad-kjwv.onrender.com/notes/" + formdata);
     return responce.data;
   }
 };
 let createData = async (formdata) => {
   if (formdata) {
     const { userId, title, description } = formdata
-    let responce = await axios.post("https://github.com/TarunThakur7974/Notepad-Backend/notes/" + userId, { title, description });
+    let responce = await axios.post("https://notepad-kjwv.onrender.com/notes/" + userId, { title, description });
     return responce.data;
   }
 };
