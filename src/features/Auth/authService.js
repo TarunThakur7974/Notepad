@@ -25,7 +25,7 @@ let createData = async (formdata) => {
 };
 let deleteData = async (formdata) => {
   if (formdata) {
-    let responce = await axios.delete("https://render.com/docs/node-version/notes" , formdata);
+    let responce = await axios.delete("https://render.com/docs/node-version/notes/" , formdata);
     return responce.data;
   }
 };
