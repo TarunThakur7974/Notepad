@@ -11,7 +11,6 @@ const { getUserData } = obj
 
 const Home = () => {
   const { user, userData, isLoading, checkState } = useSelector((state) => state.auth);
-  const [id, setId] = useState('')
   const navigate = useNavigate()
   let dispatch = useDispatch()
 
