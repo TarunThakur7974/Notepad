@@ -22,7 +22,7 @@ export const extraReducers = (builder) => {
             ...state,
             isLoading: false,
             isError: true,
-            message: action.error.message
+            message: action.payload
         };
     });
     builder.addCase(getUserData.pending, (state, action) => {
@@ -44,7 +44,7 @@ export const extraReducers = (builder) => {
             ...state,
             isLoading: false,
             isError: true,
-            message: action.error.message
+            message: action.payload
         };
     });
     builder.addCase(login.pending, (state, action) => {
@@ -67,7 +67,7 @@ export const extraReducers = (builder) => {
             ...state,
             isLoading: false,
             isError: true,
-            message: action.error.message
+            message: action.payload
         };
     });
     builder.addCase(createData.pending, (state, action) => {
@@ -89,7 +89,7 @@ export const extraReducers = (builder) => {
             ...state,
             isLoadingData: false,
             isError: true,
-            message: action.error.message
+            message: action.payload
         };
     });
     builder.addCase(deleteData.pending, (state, action) => {
@@ -111,7 +111,7 @@ export const extraReducers = (builder) => {
             ...state,
             isLoadingData: false,
             isError: true,
-            message: action.error.message
+            message: action.payload
         };
     });
 }
