@@ -15,6 +15,7 @@ export const extraReducers = (builder) => {
             isLoading: false,
             user: action.payload,
             isSucces: true,
+            message: ""
         };
     });
     builder.addCase(register.rejected, (state, action) => {
@@ -37,6 +38,7 @@ export const extraReducers = (builder) => {
             isLoading: false,
             userData: action.payload,
             isSucces: true,
+            message: ""
         };
     });
     builder.addCase(getUserData.rejected, (state, action) => {
@@ -60,6 +62,7 @@ export const extraReducers = (builder) => {
             user: action.payload,
             userData: state.user && state.user.allNotes ? state.user.allNotes : null,
             isSucces: true,
+            message: ""
         };
     });
     builder.addCase(login.rejected, (state, action) => {
@@ -82,6 +85,7 @@ export const extraReducers = (builder) => {
             isLoadingData: false,
             userData: [...state.userData, action.payload],
             isSucces: true,
+            message: ""
         };
     });
     builder.addCase(createData.rejected, (state, action) => {
@@ -104,6 +108,7 @@ export const extraReducers = (builder) => {
             isLoadingData: false,
             userData: action.payload && action.payload.deleteId && state.userData.filter((item) => item._id !== action.payload.deleteId),
             isSucces: true,
+            message: ""
         };
     });
     builder.addCase(deleteData.rejected, (state, action) => {
