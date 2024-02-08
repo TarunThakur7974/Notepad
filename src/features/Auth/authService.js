@@ -41,7 +41,7 @@ let services = {
   Login,
   getUserData,
   createData,
-updateData
+  updateData,
   deleteData
 };
 
