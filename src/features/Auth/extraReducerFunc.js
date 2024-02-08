@@ -1,4 +1,4 @@
-import obj from "./extrareducer";
+import obj, { editBlogData } from "./extrareducer";
 
 const { register, login, createData, getUserData, deleteData } = obj
 
@@ -7,9 +7,9 @@ export const extraReducers = (builder) => {
         return {
             ...state,
             isLoading: true,
+            message: ""
         };
-    });
-    builder.addCase(register.fulfilled, (state, action) => {
+    }).addCase(register.fulfilled, (state, action) => {
         return {
             ...state,
             isLoading: false,
@@ -17,22 +17,20 @@ export const extraReducers = (builder) => {
             isSucces: true,
             message: ""
         };
-    });
-    builder.addCase(register.rejected, (state, action) => {
+    }).addCase(register.rejected, (state, action) => {
         return {
             ...state,
             isLoading: false,
             isError: true,
             message: action.payload
         };
-    });
-    builder.addCase(getUserData.pending, (state, action) => {
+    }).addCase(getUserData.pending, (state, action) => {
         return {
             ...state,
             isLoading: true,
+            message: ""
         };
-    });
-    builder.addCase(getUserData.fulfilled, (state, action) => {
+    }).addCase(getUserData.fulfilled, (state, action) => {
         return {
             ...state,
             isLoading: false,
@@ -40,22 +38,20 @@ export const extraReducers = (builder) => {
             isSucces: true,
             message: ""
         };
-    });
-    builder.addCase(getUserData.rejected, (state, action) => {
+    }).addCase(getUserData.rejected, (state, action) => {
         return {
             ...state,
             isLoading: false,
             isError: true,
             message: action.payload
         };
-    });
-    builder.addCase(login.pending, (state, action) => {
+    }).addCase(login.pending, (state, action) => {
         return {
             ...state,
             isLoading: true,
+            message: ""
         };
-    });
-    builder.addCase(login.fulfilled, (state, action) => {
+    }).addCase(login.fulfilled, (state, action) => {
         return {
             ...state,
             isLoading: false,
@@ -64,22 +60,20 @@ export const extraReducers = (builder) => {
             isSucces: true,
             message: ""
         };
-    });
-    builder.addCase(login.rejected, (state, action) => {
+    }).addCase(login.rejected, (state, action) => {
         return {
             ...state,
             isLoading: false,
             isError: true,
             message: action.payload
         };
-    });
-    builder.addCase(createData.pending, (state, action) => {
+    }).addCase(createData.pending, (state, action) => {
         return {
             ...state,
-            isLoadingData: true,
+            // isLoadingData: true,
+            message: ""
         };
-    });
-    builder.addCase(createData.fulfilled, (state, action) => {
+    }).addCase(createData.fulfilled, (state, action) => {
         return {
             ...state,
             isLoadingData: false,
@@ -87,22 +81,20 @@ export const extraReducers = (builder) => {
             isSucces: true,
             message: ""
         };
-    });
-    builder.addCase(createData.rejected, (state, action) => {
+    }).addCase(createData.rejected, (state, action) => {
         return {
             ...state,
             isLoadingData: false,
             isError: true,
             message: action.payload
         };
-    });
-    builder.addCase(deleteData.pending, (state, action) => {
+    }).addCase(deleteData.pending, (state, action) => {
         return {
             ...state,
-            isLoadingData: true,
+            // isLoadingData: true,
+            message: ""
         };
-    });
-    builder.addCase(deleteData.fulfilled, (state, action) => {
+    }).addCase(deleteData.fulfilled, (state, action) => {
         return {
             ...state,
             isLoadingData: false,
@@ -110,13 +102,33 @@ export const extraReducers = (builder) => {
             isSucces: true,
             message: ""
         };
-    });
-    builder.addCase(deleteData.rejected, (state, action) => {
+    }).addCase(deleteData.rejected, (state, action) => {
         return {
             ...state,
             isLoadingData: false,
             isError: true,
             message: action.payload
         };
-    });
+    })
+    .addCase(editBlogData.pending, (state) => {
+        // state.isLoading = true
+        state.isError = false
+        state.message = ""
+      })
+      .addCase(editBlogData.fulfilled, (state, action) => {
+        state.isLoading = false
+        state.isSuccess = true
+        state.userData = state.userData.map((item) => item._id === action.payload._id ? { ...item, tittle: action.payload.tittle, description: action.payload.description } : item)
+        state.isError = false
+        state.message = ""
+      })
+      .addCase(editBlogData.rejected, (state, action) => {
+        return {
+          ...state,
+          isError: true,
+          isSuccess: false,
+          isLoading: false,
+          message: action.payload
+        }
+      })
 }

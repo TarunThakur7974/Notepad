@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import obj from "../features/Auth/extrareducer";
+import Spiner from "../components/Spiner";
+import { timeout } from "../features/Auth/authSlice";
 
 const Login = () => {
   const { login } = obj
@@ -25,6 +27,9 @@ const Login = () => {
   const save = (e) => {
     e.preventDefault();
     dispatch(login(formData));
+    setTimeout(()=>{
+      dispatch(timeout)
+    },1000)
     setFormData({
       email: "",
       password: "",
@@ -39,10 +44,15 @@ const Login = () => {
     }
     if (isError && message) {
       toast.error(message);
+      setTimeout(()=>{
+        dispatch(timeout)
+      },1000)
     }
   }, [user, isSucces, message, isError]);
 
-
+if(isLoading){
+  return <Spiner/>
+}
   return (
     <>
       <h1 className="display-4 text-center">Login Page</h1>

@@ -13,7 +13,15 @@ const authSlice = createSlice({
     message: "",
     userData: null,
     isLoadingData: false,
-    checkState: null
+    checkState: null,
+    Edit: {
+      isEdit: false,
+      obj: {
+        tittle: '',
+        description: "",
+        _id: '',
+      }
+    },
   },
 
   reducers: {
@@ -38,10 +46,31 @@ const authSlice = createSlice({
         userData: state.user.allNotes,
       }
     },
+    timeout: (state) => {
+      return{
+        ...state,
+          message : null
+      }
+     
+    },
+    edit: (state, action) => {
+      return {
+        ...state,
+        Edit: {
+          isEdit: true,
+          obj: {
+            title: action.payload.title,
+            description: action.payload.description,
+            _id: action.payload._id
+          }
+        }
+      }
+    }
   },
+
 
   extraReducers: extraReducers
 
 });
-export const { logout, allNotesData, check } = authSlice.actions;
+export const { logout, allNotesData, check,edit,timeout } = authSlice.actions;
 export default authSlice.reducer;

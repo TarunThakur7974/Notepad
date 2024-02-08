@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux';
-import obj from '../features/Auth/extrareducer';
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import obj, { editBlogData } from '../features/Auth/extrareducer';
 const { createData } = obj
 const CreateNote = ({ userId, check }) => {
+    const {Edit} = useSelector(state=>state.auth)
     const [formData, setFormData] = useState({ title: "", description: "" });
 
     const { title, description } = formData
@@ -10,12 +11,27 @@ const CreateNote = ({ userId, check }) => {
     const save = (e) => {
         e.preventDefault();
         let obj = { userId: check ? check : typeof (userId) === "object" ? userId._id : userId, title, description }
-        dispatch(createData(obj))
+        if(Edit.isEdit){
+            dispatch(editBlogData({
+                title,description,userId : Edit.obj._id
+            }))
+          }else{
+            dispatch(createData(obj))
+          }
         setFormData({
             title: "",
             description: "",
         });
     };
+
+    useEffect(()=>{
+        if(Edit.isEdit){
+            setFormData({
+              title: Edit.obj.title,
+              description: Edit.obj.description,
+            })
+          }
+    },[Edit])
     return (
         <>
             <form onSubmit={save} className="my-5">

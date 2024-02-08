@@ -11,7 +11,7 @@ const Navbar = () => {
     <nav className="navbar bg-warning shadow-lg">
       <div className="container-fluid">
         <Link to={"/"}>
-          <span className="navbar-brand mb-0 h1">Auth App</span>
+          <span className="navbar-brand mb-0 h1">Notes App</span>
         </Link>
         <span className="navbar-brand mb-0 h1">
           {user ? (

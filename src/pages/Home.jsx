@@ -6,6 +6,7 @@ import Users from "../components/Users";
 import CreateNote from "../components/CreateNote";
 import obj from "../features/Auth/extrareducer";
 import { allNotesData } from "../features/Auth/authSlice";
+import Spiner from "../components/Spiner";
 
 const { getUserData } = obj
 
@@ -20,8 +21,8 @@ const Home = () => {
     user && user.allNotes && dispatch(allNotesData())
   }, [user])
 
-  if (isLoading) {
-    return <h1>Loading...</h1>
+  if(isLoading){
+    return <Spiner/>
   }
 
   if (user && userData && userData.length === 0) {

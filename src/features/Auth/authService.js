@@ -29,12 +29,19 @@ let deleteData = async (formdata) => {
     return responce.data;
   }
 };
-
+let updateData = async (formdata) => {
+  if (formdata) {
+    const { userId, title, description } = formdata
+    let responce = await axios.put("https://notepad-kjwv.onrender.com/notes/" + userId, { title, description });
+    return responce.data;
+  }
+};
 let services = {
   Register,
   Login,
   getUserData,
   createData,
+updateData
   deleteData
 };
 
@@ -72,7 +79,8 @@ export default services;
 // };
 // let updateData = async (formdata) => {
 //   if (formdata) {
-//     let responce = await axios.put("http://localhost:5000/notes/" + formdata);
+//     const { userId, title, description } = formdata
+//     let responce = await axios.put("http://localhost:5000/notes/" + userId, { title, description });
 //     return responce.data;
 //   }
 // };
