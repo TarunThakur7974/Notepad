@@ -51,8 +51,8 @@ const authSlice = createSlice({
         ...state,
           message : null
       }
-     
     },
+
     edit: (state, action) => {
       return {
         ...state,

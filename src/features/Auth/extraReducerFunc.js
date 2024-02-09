@@ -120,6 +120,14 @@ export const extraReducers = (builder) => {
         state.isSuccess = true
         state.userData = state.userData.map((item) => item._id === action.payload._id ? { ...item, tittle: action.payload.tittle, description: action.payload.description } : item)
         state.isError = false
+        state.Edit =  {
+            isEdit: false,
+            obj: {
+              tittle: '',
+              description: "",
+              _id: '',
+            }
+          }
         state.message = ""
       })
       .addCase(editBlogData.rejected, (state, action) => {
